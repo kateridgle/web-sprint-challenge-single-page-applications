@@ -13,6 +13,12 @@ const initialFormValues = {
 }
 const initialFormErrors = {
     name:"",
+    size:"",
+    cheese:"",
+    pepperoni:"",
+    sausage:"",
+    mushroom:"",
+    special:""
   }
 
     const [form, setForm] = useState(initialFormValues);
@@ -30,7 +36,7 @@ const initialFormErrors = {
 
     const change = (name,value) => {
         validate (name, value);
-        setForm({[name]:value})
+        setForm({...form,[name]:value})
     }
 
     const validate = (name, value) => {
@@ -76,7 +82,7 @@ return (
         </label>
         <label>
             Special Instructions:
-            <input type="text" id="special-text" name="special-text" onChange={onChange} />
+            <input type="text" id="special-text" name="special" onChange={onChange} />
         </label>
         <input type="submit" id="pizza-form" name="pizza-form"/>
     </form>

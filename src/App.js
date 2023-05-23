@@ -17,7 +17,7 @@ export default function App() {
     <nav>
       <Link to="/">Home</Link>
       
-      <button id="order-pizza"><Link to="/pizza">Order Pizza</Link></button>
+      <Link to="/pizza" id="order-pizza">Order Pizza</Link>
      
     </nav>
     <Routes>
