@@ -16,11 +16,13 @@ export default function App() {
     <h1>BloomTech Eats!</h1>
     <nav>
       <Link to="/">Home</Link>
-      <Link to="pizza">Pizza</Link>
+      <button id="order-pizza">
+      <Link to="/pizza">Order Pizza</Link>
+      </button>
     </nav>
     <Routes>
       {/* <Route path="/" element={<Home/>}/> */}
-      <Route path="pizza" element={<PizzaForm />}/>
+      <Route path="/pizza" element={<PizzaForm />}/>
     </Routes>
     </div>
   )

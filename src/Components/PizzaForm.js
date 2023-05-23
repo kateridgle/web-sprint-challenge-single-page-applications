@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import FormSchema from './Validation/FormSchema';
+import FormSchema from "../Validation/FormSchema";
 import * as yup from 'yup';
 import axios from "axios";
 
@@ -17,6 +17,7 @@ const initialFormErrors = {
 
     const [form, setForm] = useState(initialFormValues);
     const [formErrors, setFormErrors]= useState(initialFormErrors);
+    const [pizza, setPizza] = useState([]);
     const onChange = (event) => {
         const {name, type,  value, id, checked} = event.target;
         const newVal = type === "checkbox"? checked: form.value;
@@ -40,14 +41,20 @@ const initialFormErrors = {
     }
     
     const submit = () => {
-        axios.post('')
+        axios.post('https://reqres.in/api/orders', pizza)
+        .then(res => {
+            setPizza([res.data, ...pizza])
+        })
+        .catch(err => {
+            console.error(err)
+        })
     }
 
 
 
 return (
 <div>
-    <form id="pizza-form" onSubmit={onSubmit}>
+    <form id="pizza-form" name="pizza-form" onSubmit={onSubmit}>
         <label>
             Name:
             <input id="name-input" name="name" type="text" onChange={onChange} />
@@ -69,7 +76,7 @@ return (
         </label>
         <label>
             Special Instructions:
-            <input type="text" id="special" name="special-text" onChange={onChange} />
+            <input type="text" id="special-text" name="special-text" onChange={onChange} />
         </label>
     </form>
 </div>
