@@ -47,7 +47,7 @@ const initialFormErrors = {
 
 return (
 <div>
-    <form id="pizza-form" onSubmit={submit}>
+    <form id="pizza-form" onSubmit={onSubmit}>
         <label>
             Name:
             <input id="name-input" name="name" type="text" onChange={onChange} />
