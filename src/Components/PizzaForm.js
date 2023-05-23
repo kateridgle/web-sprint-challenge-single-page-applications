@@ -35,7 +35,7 @@ const initialFormErrors = {
     }
 
     const change = (name,value) => {
-        validate (name, value);
+        validate(name, value);
         setForm({...form,[name]:value})
     }
 
