@@ -2,11 +2,11 @@
 
 // naigate to pizzaform here??
 
-import React from "react";
+// import React from "react";
 
-export default function pizza(){
+// export default function pizza(){
 
-    return (
-        <button>Order Pizza</button>
-    )
-}
+//     return (
+//         <button>Order Pizza</button>
+//     )
+// }
