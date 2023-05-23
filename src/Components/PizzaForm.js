@@ -30,7 +30,7 @@ const initialFormErrors = {
 
     const change = (name,value) => {
         validate (name, value);
-        setForm({...form, [name]:value})
+        setForm({[name]:value})
     }
 
     const validate = (name, value) => {
@@ -54,7 +54,7 @@ const initialFormErrors = {
 
 return (
 <div>
-    <form id="pizza-form" name="pizza-form" onSubmit={onSubmit}>
+    <form onSubmit={onSubmit}>
         <label>
             Name:
             <input id="name-input" name="name" type="text" onChange={onChange} />
@@ -78,6 +78,7 @@ return (
             Special Instructions:
             <input type="text" id="special-text" name="special-text" onChange={onChange} />
         </label>
+        <input type="submit" id="pizza-form" name="pizza-form"/>
     </form>
 </div>
 )
