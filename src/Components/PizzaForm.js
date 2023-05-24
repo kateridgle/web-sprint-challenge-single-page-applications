@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import FormSchema from "../Validation/FormSchema";
 import * as yup from 'yup';
 import axios from "axios";
@@ -24,6 +24,7 @@ const initialFormErrors = {
     const [form, setForm] = useState(initialFormValues);
     const [formErrors, setFormErrors]= useState(initialFormErrors);
     const [pizza, setPizza] = useState([]);
+    const [disabled, setDisabled] = useState(true);
     const onChange = (event) => {
         const {name, type,  value, id, checked} = event.target;
         const newVal = type === "checkbox"? checked: form.value;
@@ -43,7 +44,7 @@ const initialFormErrors = {
         yup.reach(FormSchema, name)
         .validate(value)
         .then(() => setFormErrors({...formErrors, [name]:""}))
-        .catch((err) => setFormErrors({...formErrors, [name]: err.erros[0]}))
+        .catch((err) => setFormErrors({...formErrors, [name]: err.errors[0]}))
     }
     
     const submit = () => {
@@ -55,12 +56,15 @@ const initialFormErrors = {
             console.error(err)
         })
     }
+    useEffect(()=>{
+        FormSchema.isValid(form).then(valid => setDisabled(!valid))
+    }, [form])
 
 
 
 return (
 <div>
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit} id="pizza-form">
         <label>
             Name:
             <input id="name-input" name="name" type="text" onChange={onChange} />
@@ -84,7 +88,7 @@ return (
             Special Instructions:
             <input type="text" id="special-text" name="special" onChange={onChange} />
         </label>
-        <input type="submit" id="pizza-form" name="pizza-form"/>
+        <input type="submit" id="order-button" disabled={disabled} name="pizza-form"/>
     </form>
 </div>
 )
