@@ -28,6 +28,7 @@ const initialFormErrors = {
     const onChange = (event) => {
         const {name, type,  value, id, checked} = event.target;
         const newVal = type === "checkbox"? checked: form.value;
+        setForm({...form, newVal});
         change(name, value);
     }
     const onSubmit = (event) => {
@@ -64,10 +65,12 @@ const initialFormErrors = {
 
 return (
 <div>
+    
     <form onSubmit={onSubmit} id="pizza-form">
         <label>
             Name:
             <input id="name-input" name="name" type="text" onChange={onChange} />
+            {formErrors.name? <p>{formErrors.name}</p>:null}
         </label>
         <label>
             Pizza Size:
